@@ -1,0 +1,5 @@
+text,label
+"NullPointerException encountered in event dispatch","EventService"
+"UnsupportedOperationException: API call not supported","ServiceRouting" 
+"Segmentation fault at memory address 0x0000","MemoryAccess"
+"Timeout waiting for response from API","NetworkTimeout"

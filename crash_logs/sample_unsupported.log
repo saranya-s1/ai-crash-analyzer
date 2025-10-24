@@ -1,0 +1,3 @@
+2025-10-24 13:15:07 ERROR ServiceRouting - UnsupportedOperationException: API call not supported
+	at com.company.routing.ServiceRouter.route(ServiceRouter.java:75)
+Caused by: java.lang.UnsupportedOperationException

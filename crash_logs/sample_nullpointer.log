@@ -1,0 +1,4 @@
+2025-10-24 12:31:15 ERROR EventService - NullPointerException encountered in event dispatch
+	at com.company.service.EventService.dispatch(EventService.java:45)
+	at com.company.app.Main.run(Main.java:10)
+Caused by: java.lang.NullPointerException

@@ -1,0 +1,4 @@
+Original File: sample_nullpointer.log
+Classification: EventService
+Root Cause: Null pointer encountered in event dispatch
+Suggested Fix: Add null checks before using the object.

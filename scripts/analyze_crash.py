@@ -3,9 +3,11 @@
 import os
 from datetime import datetime
 
-# Simulate crash classification and root cause analysis
+# Project root (one level above scripts/)
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def analyze_log(log_text):
-    # Very basic simulation — Replace this with AI/NLP logic later
+    """Basic simulation of crash classification."""
     if "NullPointerException" in log_text:
         return {
             "classification": "EventService",
@@ -18,6 +20,12 @@ def analyze_log(log_text):
             "root_cause": "Unsupported API call attempted",
             "suggested_fix": "Check if the API is available or correctly implemented."
         }
+    elif "TimeoutException" in log_text:
+        return {
+            "classification": "DatabaseService",
+            "root_cause": "Database timeout while waiting for response",
+            "suggested_fix": "Optimize query or increase timeout threshold."
+        }
     else:
         return {
             "classification": "Unknown",
@@ -26,15 +34,15 @@ def analyze_log(log_text):
         }
 
 def process_log_file(file_path):
-    with open(file_path, 'r') as f:
+    with open(file_path, "r") as f:
         log_text = f.read()
-    result = analyze_log(log_text)
-    return result
+    return analyze_log(log_text)
 
 def save_analysis(result, original_filename):
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = f"analysis/analysis_{timestamp}.txt"
-    with open(output_file, 'w') as f:
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+
+    output_file = os.path.join(project_root, "analysis", f"analysis_{timestamp}.txt")
+    with open(output_file, "w") as f:
         f.write(f"Original File: {original_filename}\n")
         f.write(f"Classification: {result['classification']}\n")
         f.write(f"Root Cause: {result['root_cause']}\n")
@@ -42,9 +50,13 @@ def save_analysis(result, original_filename):
     print(f"[✓] Analysis saved to {output_file}")
 
 if __name__ == "__main__":
-    log_dir = "crash_logs"
-    logs = [f for f in os.listdir(log_dir) if f.endswith('.log') or f.endswith('.txt')]
-    
+    log_dir = os.path.join(project_root, "crash_logs")
+    if not os.path.exists(log_dir):
+        print("[!] crash_logs folder not found — run setup_project.py first.")
+        exit()
+
+    logs = [f for f in os.listdir(log_dir) if f.endswith(".log") or f.endswith(".txt")]
+
     if not logs:
         print("[!] No crash logs found in crash_logs/ folder.")
     else:

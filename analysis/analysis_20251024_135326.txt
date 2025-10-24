@@ -1,0 +1,4 @@
+Original File: sample_unsupported.log
+Classification: ServiceRouting
+Root Cause: Unsupported API call attempted
+Suggested Fix: Check if the API is available or correctly implemented.

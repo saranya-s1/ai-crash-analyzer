@@ -1,0 +1,17 @@
+﻿# Natural Language Processing
+nltk==3.8.1
+spacy==3.6.1
+transformers==4.44.0
+
+# Machine Learning
+scikit-learn==1.5.0
+
+# Deep Learning Frameworks (choose one or both depending on preference)
+torch==2.4.0
+tensorflow==2.13.0
+
+# Data Handling
+pandas==2.0.3
+
+# Utilities
+tqdm==4.65.0
